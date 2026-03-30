@@ -1,1 +1,8 @@
-*.exe
+# Ignore all files
+*
+
+# But keep .cpp files
+!*.cpp
+
+# Keep folder structure
+!*/
