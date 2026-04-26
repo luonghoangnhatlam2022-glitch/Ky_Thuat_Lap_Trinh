@@ -1,93 +1,55 @@
-// bai 1
-/*
-#include <bits/stdc++.h>
-using namespace std;
-int main (){
-    int n ;
-    int m ;
-    cin>> n >> m ;
-    int F[1000];
-    F[0]=0;F[1]=1;
+#include <bits/stdc++.h> 
+using namespace std; 
+
+
+long long Bai_1_day_fibo(int n,long long fibo[],int m){
     for (int i=2;i<=n;i++){
-        F[i]=F[i-1]+F[i-2];
+        fibo[i]=fibo[i-1]%m +fibo[i-2]%m;
     }
-    cout << F[n]%m;
+    return fibo[n] % m; 
+}
+// (a+b) mod m == ((a mod m) + (b mod m)) mod m 
 
-    return 0;
-}*/
-// bai 2
-/*#include <bits/stdc++.h>
-using namespace std;
-int main (){
-    int a[1000];
-    int n ;
-    cin >> n ;
-    int TongVang=0;
-    for (int i=0;i<n;i++){
-        cin >> a[i];
-        TongVang+=a[i];
-    }
-    int ChenhLechmin=INT_MAX;
-    int TongHienTai=0;
-    for (int i=0;i<n-1;i++){
-        TongHienTai+=a[i];
-        if(ChenhLechmin>TongVang-2*TongHienTai){
-            ChenhLechmin=TongVang-2*TongHienTai;
+int dp[1000]; // co the tao duoc tong j hay khong 
+long long Bai_2_cai_tui(int haft, int n, int a[]){
+    dp[0]=1; 
+    for (int i=1;i<=n;i++){
+        for (int j=haft;j>=a[i];j--){
+            dp[j]= dp[j] || dp[j-a[i]] ; 
         }
     }
-    cout << ChenhLechmin;
-    return 0;
-}
-*/
-//bai 3
-#include <bits/stdc++.h>
-using namespace std;
-void nhapmatran(int n ,int a[][1000]){
-    for (int i=1;i,=n;i++){
-        for (int j=1;j<=n;j++){
-            cin >> a[i][j];        }
+    int tmp = 0 ;  
+    for (int i=haft;i>=1;i--){
+        if(dp[i]) 
+        {
+            tmp=i; 
+            break ;
+        }
     }
+    return tmp ; 
 }
 int main (){
-    int n ;
-    int a[1000][1000];
-    nhapmatran(n,a);
-    for (int i=1;i<=n;i++){
+    freopen("input.inp","r", stdin); 
+    freopen("xuat.out","w",stdout);
+    // bai 1 
+    //int n1;
+    //int m1;  
+    //cin >> n1; cin >> m1; 
+    //long long fibo[1000]; 
+    //fibo[0]=0; fibo[1]=1; 
+    //cout << Bai_1_day_fibo(n1,fibo,m1); 
 
-        for (int j=1;j<=n;j++){
-
-        }
+    //bai 2 
+    int n2; 
+    int a2[1000]; int S = 0 ; 
+    cin >> n2 ;
+    for (int i=1;i<=n2;i++){
+        cin >> a2[i]; 
+        S += a2[i] ; 
     }
-    return 0 ;
+    cout << S - 2*Bai_2_cai_tui(S/2 , n2 ,a2);
+    cout << endl; 
+    for (int i=0;i<=S/2;i++){
+        cout << dp[i] << " "; 
+    }
 }
-/*
-// bai 4
-#include <bits/stdc++.h>
-using namespace std ;
-int main (){
-    int n;
-    int a[100][100];
-    int A[100];
-    cin >> n ;
-    int m = 1 ;
-    int L[100]; // luu do dai lon nhat
-    for (int i=1;i<=n;i++){
-        for (int j=1;j<=2;j++){
-        cin>> a[i][j];
-        if(j==1) A[m++]=a[i][j];
-        }
-    }
-    sort(A+1,A+n+1);
-    int result=1;
-    for (int i=1;i<=n;i++){
-        L[i]=1;
-        for (int j=1;j<=i-1;j++){
-            if(A[i] > A[j] && A[i]-A[j]==1){
-                L[i]=max(L[i],L[j]+1);
-            }
-            if(L[i]>result) result=L[i];
-        }
-    }
-    cout << result ;
-    return 0 ;
-}*/

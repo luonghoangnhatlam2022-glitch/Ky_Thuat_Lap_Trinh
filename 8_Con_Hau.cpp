@@ -10,7 +10,7 @@ void ChinhHop(int k){
         if(chek[i]==false){
             //chek[i]=true;
             X[k]=i;
-            if(k==m){
+            if(k == m){
                 ++sz;
                 for (int i=1;i<=m;i++){
                     s[sz].push_back(X[i]);

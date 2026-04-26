@@ -5,7 +5,6 @@ void KhoiTao(int a[],int n){
         a[i]=0;
     }
 }
-
 void XuatCauHinh(int a[],int n){
     for (int i=0;i<n;i++){
         cout << a[i];
@@ -15,29 +14,17 @@ void XuatCauHinh(int a[],int n){
 
 bool CheckCauHinh=false;
 void SinhNhiPhan(int a[],int n){
+    
     int i=n-1;
     while(a[i]==1 && i>=0){
         a[i]=0;
         i--;
     }
-    if(i==0){
+    if(i==-1){
         CheckCauHinh=true;
     }
     else
         a[i]=1;
-}
-bool Conditions(int n,int a[]){
-    int dem1=0;
-    int dem2=0;
-    a[n]=0;
-    for (int i=0;i<n;i++){
-        if(a[i]==1 && a[i+1]==1) dem1++; 
-        if(a[i]==1)  dem2++;
-    }
-    if(dem1==2 && dem2==3)
-        return true;
-    else 
-        return false; 
 }
 /////////////////////////////////////////////////////////////////////////// 
 
@@ -107,13 +94,12 @@ int main (){
     cin >> n ; 
     KhoiTao(a,n);
     while(!CheckCauHinh){
-        if(Conditions(n,a)){ //  dieu kien them: Example: chỉ lấy bit có 3 số 1 liên tiếp  
-            XuatCauHinh(a,n);
-        }
+          // dieu kien them: Example: chỉ lấy bit có 3 số 1 liên tiếp  
+        XuatCauHinh(a,n);
         SinhNhiPhan(a,n);
     }
 /////////////////////////////////////////////////////////////////////////
-    int K;
+    /* int K;
     int N; 
     int A[100];
     cin>> N >> K; 
@@ -126,8 +112,8 @@ int main (){
 /////////////////////////////////////////////////////////////////////
     int SoGiaiThua;
     int array[100];
-    KhoiTaoGiaiThua(SoGiaiThua,array);
-    /*while(!CheckGiaiThua){
+    //KhoiTaoGiaiThua(SoGiaiThua,array);
+    while(!CheckGiaiThua){
         XuatGiaiThua(SoGiaiThua,array);
         SinhGiaiThua(SoGiaiThua,array);
     }*/
